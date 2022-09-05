@@ -21,29 +21,9 @@ Country varchar(255)
 
 drop procedure SpAddNewEmployee
 
-create procedure spSelectEmployeeData
-(
-@EmployeeId int,
-@EmployeeName varchar(255),
-@PhoneNumber varchar(255),
-@Address varchar(255),
-@Department varchar(255),
-@Gender varchar(255),
-@BasicPay int,
-@Deductions int,
-@TaxablePay int,
-@Tax int,
-@NetPay int,
-@StartDate date,
-@City varchar(255),
-@Country varchar(255)
-)
-as
-begin
-select * from employee_payroll;
-end
 
-select*from employee_payroll
+
+select*from employee_payroll;
 
 ---UC---
 
@@ -67,6 +47,13 @@ as
 begin
 INSERT INTO employee_payroll(EmployeeName, PhoneNumber, Address, Department, Gender, BasicPay, Deductions, TaxablePay, Tax, NetPay,StartDate, City, Country) values(@EmployeeName, @PhoneNumber, @Address, @Department, @Gender, @BasicPay, @Deductions, @TaxablePay, @Tax, @NetPay,@StartDate, @City, @Country) 
 end
+
+----Retrieve Data-----
+alter procedure spViewEmployeeData
+as
+begin
+select * from employee_payroll;
+end 
 
 create procedure spUpdateEmployeeSlaray
 (

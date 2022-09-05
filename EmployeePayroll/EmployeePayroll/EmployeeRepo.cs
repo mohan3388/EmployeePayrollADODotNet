@@ -35,7 +35,7 @@ namespace EmployeePayroll
                 connection.Open();
                 int i = command.ExecuteNonQuery();
                 connection.Close();
-                if(i != 0)
+                if (i != 0)
                 {
                     return true;
                 }
@@ -45,10 +45,45 @@ namespace EmployeePayroll
                 }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
+        }
+        public List<EmployeeModel> GetAllEmployees()
+        {
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+            SqlCommand command = new SqlCommand("spViewEmployeeData", connection);
+            command.CommandType = CommandType.StoredProcedure;
+           
+            connection.Open();
+            SqlDataReader row = command.ExecuteReader();
+            
+
+            EmployeeModel model = new EmployeeModel();
+            while (row.Read())
+            {
+
+                model.EmployeeId = Convert.ToInt32(row["EmployeeId"]);
+                model.EmployeeName = Convert.ToString(row["EmployeeName"]);
+                model.PhoneNumber = Convert.ToString(row["PhoneNumber"]);
+                model.Address = Convert.ToString(row["Address"]);
+                model.Department = Convert.ToString(row["Department"]);
+                model.Gender = Convert.ToString(row["Gender"]);
+                model.BasicPay = Convert.ToInt64(row["BasicPay"]);
+                model.Deductions = Convert.ToInt32(row["Deductions"]);
+                model.TaxablePay = Convert.ToInt32(row["TaxablePay"]);
+                model.Tax = Convert.ToInt32(row["Tax"]);
+                model.NetPay = Convert.ToInt32(row["NetPay"]);
+                model.StartDate = Convert.ToDateTime(row["StartDate"]);
+                model.City = Convert.ToString(row["City"]);
+                model.Country = Convert.ToString(row["Country"]);
+
+                employees.Add(model);
+                  
+            }
+            connection.Close();
+            return employees;
         }
     }
 }
