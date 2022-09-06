@@ -37,11 +37,8 @@
                         repo.AddEmployee(model);
                         break;
                     case 2:
-                        List<EmployeeModel> empList = repo.GetAllEmployees();
-                        foreach (EmployeeModel data in empList)
-                        {
-                            Console.WriteLine(data.EmployeeId + " " + data.PhoneNumber + " " + data.Address + " " + data.Department + " " + data.StartDate + " " + data.Address + " " + data.Gender + " " + data.BasicPay + " " + data.Deductions + " " + data.TaxablePay + " " + data.Tax + " " + data.NetPay+" "+data.StartDate+" "+data.City+" "+data.Country);
-                        }
+                         repo.GetAllEmployees();
+                       
                         break;
                     case 0:
                         check = false;
