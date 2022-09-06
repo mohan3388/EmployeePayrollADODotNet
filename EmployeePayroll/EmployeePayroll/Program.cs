@@ -14,7 +14,7 @@
 
             while (check)
             {
-                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database");
+                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database\n3. Update salary");
                 Console.WriteLine("Enter the Above Option");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -42,6 +42,12 @@
                         {
                             Console.WriteLine(data.EmployeeId + " " + data.PhoneNumber + " " + data.Address + " " + data.Department + " " + data.StartDate + " " + data.Address + " " + data.Gender + " " + data.BasicPay + " " + data.Deductions + " " + data.TaxablePay + " " + data.Tax + " " + data.NetPay+" "+data.StartDate+" "+data.City+" "+data.Country);
                         }
+                        break;
+                    case 3:
+                        EmployeeModel model1 = new EmployeeModel();
+                        model1.EmployeeName = "Mohan";
+                        model1.BasicPay = 15001;
+                        repo.UpdateEmp(model1);
                         break;
                     case 0:
                         check = false;

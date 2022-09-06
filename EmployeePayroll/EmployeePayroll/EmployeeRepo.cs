@@ -85,5 +85,28 @@ namespace EmployeePayroll
             connection.Close();
             return employees;
         }
+
+        //To Update Emp data   
+        public bool UpdateEmp(EmployeeModel obj)
+        {
+        
+            SqlCommand com = new SqlCommand("SPUpdateEmpDetails", connection);
+
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@EmployeeName", obj.EmployeeName);
+            com.Parameters.AddWithValue("@BasicPay", obj.BasicPay);
+
+            connection.Open();
+            int i = com.ExecuteNonQuery();
+            connection.Close();
+            if (i != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

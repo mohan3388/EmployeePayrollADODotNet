@@ -49,11 +49,25 @@ INSERT INTO employee_payroll(EmployeeName, PhoneNumber, Address, Department, Gen
 end
 
 ----Retrieve Data-----
-alter procedure spViewEmployeeData
+create procedure spViewEmployeeData
 as
 begin
 select * from employee_payroll;
 end 
+
+-----Update data-----
+
+ALTER PROCEDURE SPUpdateEmpDetails
+(
+@EmployeeName varchar(255),
+@BasicPay int
+)
+AS
+BEGIN
+UPDATE employee_payroll set BasicPay = @BasicPay where EmployeeName = @EmployeeName
+END
+	
+
 
 create procedure spUpdateEmployeeSlaray
 (
