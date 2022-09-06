@@ -14,7 +14,7 @@
 
             while (check)
             {
-                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database\n3. Update salary\n4. Delete data");
+                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database\n3. Update salary\n4. Delete data\n5. Get Data in Range");
                 Console.WriteLine("Enter the Above Option");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -37,11 +37,7 @@
                         repo.AddEmployee(model);
                         break;
                     case 2:
-                        List<EmployeeModel> empList = repo.GetAllEmployees();
-                        foreach (EmployeeModel data in empList)
-                        {
-                            Console.WriteLine(data.EmployeeId + " " + data.PhoneNumber + " " + data.Address + " " + data.Department + " " + data.StartDate + " " + data.Address + " " + data.Gender + " " + data.BasicPay + " " + data.Deductions + " " + data.TaxablePay + " " + data.Tax + " " + data.NetPay+" "+data.StartDate+" "+data.City+" "+data.Country);
-                        }
+                        repo.GetAllEmployees();
                         break;
                     case 3:
                         EmployeeModel model1 = new EmployeeModel();
@@ -54,6 +50,10 @@
 
                         repo.DeleteEmployee(1);
                         break;
+                    case 5:
+                         repo.GetDataInDateRange();
+                        break;
+
                     case 0:
                         check = false;
                         break;
