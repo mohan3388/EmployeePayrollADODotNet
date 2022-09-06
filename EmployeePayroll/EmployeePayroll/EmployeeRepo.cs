@@ -50,7 +50,7 @@ namespace EmployeePayroll
                 throw new Exception(e.Message);
             }
         }
-        public List<EmployeeModel> GetAllEmployees()
+       public List<EmployeeModel> GetAllEmployees()
         {
             List<EmployeeModel> employees = new List<EmployeeModel>();
             SqlCommand command = new SqlCommand("spViewEmployeeData", connection);
@@ -61,27 +61,30 @@ namespace EmployeePayroll
             
 
             EmployeeModel model = new EmployeeModel();
-            while (row.Read())
-            {
+            
+                while (row.Read())
+                {
 
-                model.EmployeeId = Convert.ToInt32(row["EmployeeId"]);
-                model.EmployeeName = Convert.ToString(row["EmployeeName"]);
-                model.PhoneNumber = Convert.ToString(row["PhoneNumber"]);
-                model.Address = Convert.ToString(row["Address"]);
-                model.Department = Convert.ToString(row["Department"]);
-                model.Gender = Convert.ToString(row["Gender"]);
-                model.BasicPay = Convert.ToInt64(row["BasicPay"]);
-                model.Deductions = Convert.ToInt32(row["Deductions"]);
-                model.TaxablePay = Convert.ToInt32(row["TaxablePay"]);
-                model.Tax = Convert.ToInt32(row["Tax"]);
-                model.NetPay = Convert.ToInt32(row["NetPay"]);
-                model.StartDate = Convert.ToDateTime(row["StartDate"]);
-                model.City = Convert.ToString(row["City"]);
-                model.Country = Convert.ToString(row["Country"]);
+                    model.EmployeeId = row.GetInt32(0);
+                    model.EmployeeName = row.GetString(1);
+                    model.PhoneNumber = row.GetString(2);
+                    model.Address = row.GetString(3);
+                    model.Department = row.GetString(4);
+                    model.Gender = row.GetString(5);
+                    model.BasicPay = row.GetInt32(6);
+                    model.Deductions = row.GetInt32(7);
+                    model.TaxablePay = row.GetInt32(8);
+                    model.Tax = row.GetInt32(9);
+                    model.NetPay = row.GetInt32(10);
+                    model.StartDate = row.GetDateTime(11);
+                    model.City = row.GetString(12);
+                    model.Country = row.GetString(13);
 
-                employees.Add(model);
-                  
-            }
+                    employees.Add(model);
+                    Console.WriteLine(model.EmployeeId +" "+model.EmployeeName+ " " + model.PhoneNumber + " " + model.Address + " " + model.Department + " " + model.StartDate + " " + model.Address + " " + model.Gender + " " + model.BasicPay + " " + model.Deductions + " " + model.TaxablePay + " " + model.Tax + " " + model.NetPay + " " + model.StartDate + " " + model.City + " " + model.Country);
+
+                }
+            
             connection.Close();
             return employees;
         }
