@@ -14,14 +14,14 @@
 
             while (check)
             {
-                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database\n3. Update salary");
+                Console.WriteLine("1. To Insert the Data in Data Base \n2. Retrive the data in database\n3. Update salary\n4. Delete data");
                 Console.WriteLine("Enter the Above Option");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
                     case 1:
                         EmployeeModel model = new EmployeeModel();
-                        model.EmployeeName = "Mohan";
+                        model.EmployeeName = "Terrisa";
                         model.PhoneNumber = "7898625487";
                         model.Address = "green valley";
                         model.Department = "CSE";
@@ -48,6 +48,11 @@
                         model1.EmployeeName = "Mohan";
                         model1.BasicPay = 15001;
                         repo.UpdateEmp(model1);
+                        break;
+                    case 4:
+                        EmployeeModel model2 = new EmployeeModel();
+
+                        repo.DeleteEmployee(1);
                         break;
                     case 0:
                         check = false;

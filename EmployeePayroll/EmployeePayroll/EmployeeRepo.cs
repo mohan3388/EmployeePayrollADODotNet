@@ -80,8 +80,10 @@ namespace EmployeePayroll
                 model.Country = Convert.ToString(row["Country"]);
 
                 employees.Add(model);
-                  
+             
+
             }
+            
             connection.Close();
             return employees;
         }
@@ -100,6 +102,27 @@ namespace EmployeePayroll
             int i = com.ExecuteNonQuery();
             connection.Close();
             if (i != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteEmployee(int EmployeeId)
+        {
+            
+            SqlCommand com = new SqlCommand("spDeleteData", connection);
+
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@EmployeeId", EmployeeId);
+
+            connection.Open();
+            int i = com.ExecuteNonQuery();
+            connection.Close();
+            if (i !=0 )
             {
                 return true;
             }
